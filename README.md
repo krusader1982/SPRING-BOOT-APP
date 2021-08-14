@@ -7,3 +7,13 @@
 ## Objetivo
 
 * Contruir uma aplicação completa utilizando os conceitos aprendidos na disciplina
+
+## Tecnologias
+
+## Configuração
+
+## Requerimentos mínimos
+
+## Iniciar projeto
+
+## Entregas parciais
