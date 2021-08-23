@@ -2,9 +2,9 @@ create schema cookbook;
 
 use cookbook;
 
-create user 'user'@'localhost' identified by 'pass123';
+create user 'usuario'@'localhost' identified by 'passstrong';
 
-grant select, insert, delete, update on cookbook.* to user@'localhost';
+grant select, insert, delete, update on cookbook.* to usuario@'localhost';
 
 create table rec_receita (
   rec_id bigint unsigned not null auto_increment,
