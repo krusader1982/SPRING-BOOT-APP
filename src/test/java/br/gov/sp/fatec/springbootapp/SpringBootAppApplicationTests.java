@@ -39,7 +39,7 @@ class SpringBootAppApplicationTests {
 	@Test
 	void ingredienteRepositorySaveTestOK(){
 		Ingrediente ing = new Ingrediente();
-		ing.setNome("ROLE_TESTE");
+		ing.setNome("leite");
 		ingRepo.save(ing);
 		assertNotNull(ing.getId());
 	}
@@ -47,10 +47,10 @@ class SpringBootAppApplicationTests {
 	@Test
 	void receitaRepositorySaveTestOK(){
 		Ingrediente ing = new Ingrediente();
-		ing.setNome("ROLE_TESTE1");
+		ing.setNome("leite");
 		ingRepo.save(ing);
 		Receita receita = new Receita();
-		receita.setNome("TESTE");
+		receita.setNome("Brigadeiro");
 		receita.setIngredientes(new HashSet<Ingrediente>());
 		receita.getIngredientes().add(ing);
 		receitaRepo.save(receita);
@@ -60,16 +60,16 @@ class SpringBootAppApplicationTests {
 	@Test
 	void ingredienteRepositoryFindByNomeTestOK(){
 		Ingrediente ing = new Ingrediente();
-		ing.setNome("ROLE_TESTE2");
+		ing.setNome("leite");
 		ingRepo.save(ing);
-		assertNotNull(ingRepo.findByNome("ROLE_TESTE2"));
+		assertNotNull(ingRepo.findByNome("leite"));
 	}
 
 	@Test
 	void receitaServiceCadastrarReceitaTestOK(){
-		receitaService.cadastrarReceita("teste", "TESTE1");
+		receitaService.cadastrarReceita("brigadeiro", "leite");
 
-		List<Receita> receitas = receitaRepo.findByIngredientesNome("TESTE1");
+		List<Receita> receitas = receitaRepo.findByIngredientesNome("leite");
 
 		assertFalse(receitas.isEmpty());
 	}
