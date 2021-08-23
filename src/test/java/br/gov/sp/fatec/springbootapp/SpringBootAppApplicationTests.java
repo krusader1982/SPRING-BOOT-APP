@@ -1,8 +1,10 @@
 package br.gov.sp.fatec.springbootapp;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.HashSet;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import br.gov.sp.fatec.springbootapp.entity.Ingrediente;
 import br.gov.sp.fatec.springbootapp.entity.Receita;
 import br.gov.sp.fatec.springbootapp.repository.IngredienteRepository;
 import br.gov.sp.fatec.springbootapp.repository.ReceitaRepository;
+import br.gov.sp.fatec.springbootapp.service.ReceitaService;
 
 @SpringBootTest
 @Transactional
@@ -25,6 +28,9 @@ class SpringBootAppApplicationTests {
 
 	@Autowired
 	private ReceitaRepository receitaRepo;
+
+	@Autowired
+	private ReceitaService receitaService;
 
 	@Test
 	void contextLoads() {
@@ -57,5 +63,14 @@ class SpringBootAppApplicationTests {
 		ing.setNome("ROLE_TESTE2");
 		ingRepo.save(ing);
 		assertNotNull(ingRepo.findByNome("ROLE_TESTE2"));
+	}
+
+	@Test
+	void receitaServiceCadastrarReceitaTestOK(){
+		receitaService.cadastrarReceita("teste", "TESTE1");
+
+		List<Receita> receitas = receitaRepo.findByIngredientesNome("TESTE1");
+
+		assertFalse(receitas.isEmpty());
 	}
 }
