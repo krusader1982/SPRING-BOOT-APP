@@ -9,6 +9,7 @@ grant select, insert, delete, update on cookbook.* to usuario@'localhost';
 create table rec_receita (
   rec_id bigint unsigned not null auto_increment,
   rec_nome varchar(20) not null,
+  rec_categoria varchar(20) not null,
   primary key (rec_id),
   unique key uni_receita_nome (rec_nome)
 );
