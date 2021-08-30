@@ -7,4 +7,5 @@ import br.gov.sp.fatec.springbootapp.entity.Ingrediente;
 public interface IngredienteRepository extends JpaRepository<Ingrediente, Long>{
     
     public Ingrediente findByNome(String nome);
+
 }

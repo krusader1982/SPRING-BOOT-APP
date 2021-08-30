@@ -34,6 +34,6 @@ public class Ingrediente {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
+  
     
 }

@@ -16,7 +16,7 @@ import br.gov.sp.fatec.springbootapp.entity.Ingrediente;
 import br.gov.sp.fatec.springbootapp.entity.Receita;
 import br.gov.sp.fatec.springbootapp.repository.IngredienteRepository;
 import br.gov.sp.fatec.springbootapp.repository.ReceitaRepository;
-import br.gov.sp.fatec.springbootapp.service.ReceitaService;
+import br.gov.sp.fatec.springbootapp.service.ReceitaServiceImpl;
 
 @SpringBootTest
 @Transactional
@@ -30,7 +30,7 @@ class SpringBootAppApplicationTests {
 	private ReceitaRepository receitaRepo;
 
 	@Autowired
-	private ReceitaService receitaService;
+	private ReceitaServiceImpl receitaService;
 
 	@Test
 	void contextLoads() {
@@ -51,6 +51,7 @@ class SpringBootAppApplicationTests {
 		ingRepo.save(ing);
 		Receita receita = new Receita();
 		receita.setNome("Brigadeiro");
+		receita.setCategoria("Doces");
 		receita.setIngredientes(new HashSet<Ingrediente>());
 		receita.getIngredientes().add(ing);
 		receitaRepo.save(receita);
@@ -67,10 +68,26 @@ class SpringBootAppApplicationTests {
 
 	@Test
 	void receitaServiceCadastrarReceitaTestOK(){
-		receitaService.cadastrarReceita("brigadeiro", "leite");
+		receitaService.cadastrarReceita("brigadeiro","doce", "leite");
 
 		List<Receita> receitas = receitaRepo.findByIngredientesNome("leite");
 
 		assertFalse(receitas.isEmpty());
+	}
+
+	@Test
+	void receitaServiceFindByNomeAndCategoriaTest() {
+		receitaService.cadastrarReceita("brigadeiro", "doce", "leite");
+		
+		assertNotNull(receitaRepo.findByNomeAndCategoria("brigadeiro", "doce").getId());
+	}
+
+
+	@Test
+	void receitaRepositoryFindByIngredientesNomeTest() {
+		receitaService.cadastrarReceita("strogonoff", "salgado", "frango");
+		
+		assertFalse(receitaRepo.findByIngredientesNome("frango").isEmpty());
+	
 	}
 }

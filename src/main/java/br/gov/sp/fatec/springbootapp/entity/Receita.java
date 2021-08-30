@@ -25,6 +25,9 @@ public class Receita {
     @Column(name = "rec_nome")
     private String nome;
 
+    @Column(name = "rec_categoria")
+    private String categoria;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "rei_receita_ingrediente",
         joinColumns = { @JoinColumn(name = "rec_id")},
@@ -45,6 +48,14 @@ public class Receita {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
     public Set<Ingrediente> getIngredientes() {
